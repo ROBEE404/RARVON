@@ -1,0 +1,46 @@
+Rarvon for desktop (beta)
+Copyright (c) 2026 ROBEE (https://github.com/ROBEE404). All rights reserved.
+
+Rarvon is free to use. It is not open source.
+
+WHAT YOU MAY DO
+
+  - Install and use Rarvon and its tools, for free, for any purpose.
+  - Report bugs or ask for new tools on GitHub.
+
+WHAT YOU MAY NOT DO WITHOUT WRITTEN PERMISSION FROM THE COPYRIGHT HOLDER
+
+  - Copy, modify, or create works based on Rarvon or its design.
+  - Publish, host, distribute, sell or sublicense Rarvon, in whole or in part,
+    including as your own website or app.
+
+YOUR FILES
+
+  Rarvon works on your computer. Files you open in Rarvon are not uploaded
+  anywhere. Rarvon has no account, no ads and no analytics.
+
+THIRD-PARTY SOFTWARE
+
+  Rarvon includes open-source software by other people. Those parts remain
+  under their own licenses, and nothing in this notice limits the rights
+  those licenses give you for those parts:
+
+  - FFmpeg (https://ffmpeg.org), used for video and audio, is licensed under
+    the GNU Lesser General Public License version 3 (LGPL v3). Rarvon runs it
+    as a separate program, ffmpeg\ffmpeg.exe in the install folder; its
+    license is in ffmpeg\LICENSE.txt. This is the LGPL build from
+    https://github.com/FFmpeg-Builds/FFmpeg-Builds, whose page links to the
+    exact FFmpeg source code it was built from. You may replace
+    ffmpeg\ffmpeg.exe with your own build of FFmpeg.
+  - The libraries in Rarvon's pages are listed with their licenses in
+    web\licenses\third-party.txt, and inside Rarvon on the "Credits and
+    licenses" page.
+  - Rarvon.exe itself is built with Rust libraries (MIT or Apache-2.0
+    licensed); their copyright notices and licenses are in
+    licenses\rust-crates.txt in the install folder.
+
+NO WARRANTY
+
+  Rarvon is provided "as is", without warranty of any kind, express or
+  implied. The copyright holder is not liable for any claim, damages or
+  other liability arising from the use of Rarvon.

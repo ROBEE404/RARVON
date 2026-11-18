@@ -1,0 +1,37 @@
+Rarvon
+Copyright (c) 2026 ROBEE (https://github.com/ROBEE404). All rights reserved.
+
+This repository is public so that people can see how Rarvon works and report
+bugs or ask for new tools. That does not make it open source.
+
+WHAT YOU MAY DO
+
+  - Use the Rarvon website and its tools, for free, for any purpose.
+  - Read the source code in this repository.
+  - Open issues to report bugs, security problems or ideas for new tools.
+
+WHAT YOU MAY NOT DO WITHOUT WRITTEN PERMISSION FROM THE COPYRIGHT HOLDER
+
+  - Copy, modify, or create works based on this code or its design.
+  - Publish, host, distribute, sell or sublicense this code, in whole or in
+    part, including as your own website or app.
+  - Use this code to train or build another product.
+
+Viewing and forking this repository on GitHub is allowed only to the extent
+GitHub's Terms of Service require; it gives no other rights.
+
+Changes to Rarvon are made only by the copyright holder. Pull requests are not
+accepted; please open an issue instead.
+
+THIRD-PARTY SOFTWARE
+
+Rarvon includes open-source software by other people. Those parts remain under
+their own licenses, listed in THIRD_PARTY_LICENSES.md and shipped with the
+site at /licenses/third-party.txt. Nothing in this notice limits the rights
+those licenses give you for those parts.
+
+NO WARRANTY
+
+Rarvon is provided "as is", without warranty of any kind, express or implied.
+The copyright holder is not liable for any claim, damages or other liability
+arising from the use of Rarvon.

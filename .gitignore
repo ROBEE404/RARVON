@@ -1,0 +1,12 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+*.local
+test-results
+playwright-report
+ai-models
+
+# Demo download links for previewing the app button (npx vite --mode appdemo)
+.env.appdemo

@@ -1,0 +1,26 @@
+// Windows resources for Rarvon.exe: the icon Explorer and the taskbar show,
+// and the details in the file's Properties.
+1 ICON "bench.ico"
+
+1 VERSIONINFO
+FILEVERSION 0,1,0,0
+PRODUCTVERSION 0,1,0,0
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904B0"
+    BEGIN
+      VALUE "CompanyName", "ROBEE"
+      VALUE "FileDescription", "Rarvon"
+      VALUE "FileVersion", "0.1.0"
+      VALUE "ProductName", "Rarvon for desktop (beta)"
+      VALUE "ProductVersion", "0.1.0"
+      VALUE "LegalCopyright", "Copyright ROBEE. All rights reserved."
+      VALUE "OriginalFilename", "Rarvon.exe"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 1200
+  END
+END

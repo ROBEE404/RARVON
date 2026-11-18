@@ -1,0 +1,66 @@
+import { lazy } from 'react';
+
+// Each entry is a lazy-loaded component so the homepage never pays for
+// every tool's JS. Add a new tool by dropping a folder in src/tools/<category>/<slug>/
+// with an index.tsx default export, then registering it here and in toolRegistry.ts.
+export const toolComponents: Record<string, ReturnType<typeof lazy>> = {
+  'pdf/editor': lazy(() => import('../tools/pdf/editor')),
+  'pdf/merge': lazy(() => import('../tools/pdf/merge')),
+  'pdf/split': lazy(() => import('../tools/pdf/split')),
+  'pdf/compress': lazy(() => import('../tools/pdf/compress')),
+  'pdf/rotate': lazy(() => import('../tools/pdf/rotate')),
+  'pdf/extract': lazy(() => import('../tools/pdf/extract')),
+  'pdf/reorder': lazy(() => import('../tools/pdf/reorder')),
+  'pdf/to-images': lazy(() => import('../tools/pdf/to-images')),
+  'pdf/from-images': lazy(() => import('../tools/pdf/from-images')),
+  'pdf/to-text': lazy(() => import('../tools/pdf/to-text')),
+  'pdf/metadata': lazy(() => import('../tools/pdf/metadata')),
+  'pdf/delete-pages': lazy(() => import('../tools/pdf/delete-pages')),
+  'pdf/page-numbers': lazy(() => import('../tools/pdf/page-numbers')),
+  'pdf/watermark': lazy(() => import('../tools/pdf/watermark')),
+  'pdf/sign': lazy(() => import('../tools/pdf/sign')),
+
+  'image/convert': lazy(() => import('../tools/image/convert')),
+  'image/compress': lazy(() => import('../tools/image/compress')),
+  'image/resize': lazy(() => import('../tools/image/resize')),
+  'image/crop': lazy(() => import('../tools/image/crop')),
+  'image/rotate': lazy(() => import('../tools/image/rotate')),
+  'image/metadata': lazy(() => import('../tools/image/metadata')),
+  'image/remove-metadata': lazy(() => import('../tools/image/remove-metadata')),
+  'image/to-text': lazy(() => import('../tools/image/to-text')),
+  'image/remove-background': lazy(() => import('../tools/image/remove-background')),
+
+  'developer/json-formatter': lazy(() => import('../tools/developer/json-formatter')),
+  'developer/json-minifier': lazy(() => import('../tools/developer/json-minifier')),
+  'developer/base64': lazy(() => import('../tools/developer/base64')),
+  'developer/url-encode': lazy(() => import('../tools/developer/url-encode')),
+  'developer/uuid': lazy(() => import('../tools/developer/uuid')),
+  'developer/hash': lazy(() => import('../tools/developer/hash')),
+  'developer/timestamp': lazy(() => import('../tools/developer/timestamp')),
+  'developer/color': lazy(() => import('../tools/developer/color')),
+  'developer/jwt-decoder': lazy(() => import('../tools/developer/jwt-decoder')),
+  'developer/regex-tester': lazy(() => import('../tools/developer/regex-tester')),
+
+  'text/word-counter': lazy(() => import('../tools/text/word-counter')),
+  'text/case-converter': lazy(() => import('../tools/text/case-converter')),
+  'text/text-cleaner': lazy(() => import('../tools/text/text-cleaner')),
+  'text/dedupe': lazy(() => import('../tools/text/dedupe')),
+  'text/sort-lines': lazy(() => import('../tools/text/sort-lines')),
+
+  'audio/trim': lazy(() => import('../tools/audio/trim')),
+  'video/editor': lazy(() => import('../tools/video/editor')),
+  'video/trim': lazy(() => import('../tools/video/trim')),
+  'video/resolution': lazy(() => import('../tools/video/resolution')),
+  'video/convert': lazy(() => import('../tools/video/convert')),
+  'video/compress': lazy(() => import('../tools/video/compress')),
+  'audio/convert': lazy(() => import('../tools/audio/convert')),
+  'audio/compress': lazy(() => import('../tools/audio/compress')),
+  'audio/extract': lazy(() => import('../tools/audio/extract')),
+
+  'utilities/qr': lazy(() => import('../tools/utilities/qr')),
+  'utilities/password': lazy(() => import('../tools/utilities/password')),
+  'utilities/random-number': lazy(() => import('../tools/utilities/random-number')),
+  'utilities/url-shortener': lazy(() => import('../tools/utilities/url-shortener')),
+  'utilities/archive': lazy(() => import('../tools/utilities/archive')),
+  'utilities/unzip': lazy(() => import('../tools/utilities/unzip')),
+};

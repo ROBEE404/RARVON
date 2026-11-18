@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Free, ad-free, account-free tools for PDFs, images, video and text — processed locally in your browser." />
+    <meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#131519" media="(prefers-color-scheme: dark)" />
+    <script>
+      // Runs before first paint to avoid a flash of the wrong theme.
+      // Mirrors the resolution logic in src/lib/themeContext.tsx.
+      (function () {
+        try {
+          var stored = localStorage.getItem('bench-theme');
+          var pref = stored === 'light' || stored === 'dark' || stored === 'system' ? stored : 'system';
+          var resolved = pref === 'system'
+            ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+            : pref;
+          document.documentElement.setAttribute('data-theme', resolved);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+        // Interface language (English unless the visitor switched to Arabic).
+        try {
+          if (localStorage.getItem('bench-lang') === 'ar') {
+            document.documentElement.setAttribute('lang', 'ar');
+            document.documentElement.setAttribute('dir', 'rtl');
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <title>Rarvon — Free tools. No ads. No account.</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

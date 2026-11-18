@@ -1,0 +1,333 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  /* The RARVON wordmark (Syne ExtraBold in the logo files). */
+  --font-brand: "Syne", "Space Grotesk", sans-serif;
+
+  /* Semantic tokens — light values (default / [data-theme="light"]).
+     Every component reads these by name (bg-paper, text-ink, border-line, ...),
+     never a literal color, so a theme is just a different set of values for
+     the same names. See the [data-theme="dark"] block below for the dark set. */
+  --color-ink: #14171c; /* primary text; also used as the "strong" bg for high-contrast chips/buttons */
+  --color-paper: #faf9f6; /* page background; also used as text color on --color-ink surfaces */
+  --color-paper-dim: #f0efe9; /* secondary surface (cards, inputs, subtle panels) */
+  --color-elevated: #ffffff; /* elevated surface (modals, popovers) — should stand apart from paper */
+  --color-grid: #e3e1d8; /* decorative grid lines */
+  --color-workshop: #5b56e8; /* accent */
+  --color-workshop-dim: #efeeff; /* accent-tinted surface */
+  --color-signal: #2f8f6e; /* success */
+  --color-signal-dim: #e6f3ee; /* success-tinted surface */
+  --color-warn: #b5601f; /* warning / error */
+  --color-warn-dim: #fbeee1; /* warning-tinted surface */
+  --color-heart: #d4513a; /* Support: coral, used only for the support button and page */
+  --color-heart-dim: #fdece7;
+  --color-line: #d9d7cc; /* borders */
+  /* Secondary and faint text. Both pass WCAG AA (4.5:1) on paper, paper-dim and
+     tinted surfaces in both themes; they replace the old ink/40–70 opacities,
+     which measured as low as 2.5:1. */
+  --color-ink-2: #4f535b;
+  --color-ink-3: #686b72;
+}
+
+/* Dark theme — same token names, different values. Because every Tailwind
+   utility Tailwind v4 generates for these colors compiles to var(--color-x),
+   overriding the custom properties here re-themes the whole app without
+   touching a single component file. */
+:root[data-theme='dark'] {
+  --color-ink: #ece9e1;
+  --color-paper: #131519;
+  --color-paper-dim: #1d2026;
+  --color-elevated: #23262d;
+  --color-grid: #23262d;
+  --color-workshop: #8f89ff;
+  --color-workshop-dim: #221f3d;
+  --color-signal: #55cc9f;
+  --color-signal-dim: #123227;
+  --color-warn: #e79a63;
+  --color-warn-dim: #372316;
+  --color-heart: #ff7a63;
+  --color-heart-dim: #3a1c17;
+  --color-line: #2b2f37;
+  --color-ink-2: #bdbab2;
+  --color-ink-3: #9a978f;
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+/* The Rarvon mark (components/Logo.tsx): dark-bodied on light pages,
+   light-faced with a white shine on dark pages, like the logo files. */
+:root {
+  --logo-body: #1b1b22;
+  --logo-shine: transparent;
+}
+:root[data-theme='dark'] {
+  --logo-body: #e6e2f7;
+  --logo-shine: rgb(255 255 255 / 0.9);
+}
+
+/* Category hues: plain custom properties (not @theme) because they are read
+   through var() in inline styles, which Tailwind can't see — @theme variables
+   that no utility uses are left out of the build. Used only for icon tiles. */
+:root {
+  --color-cat-pdf: #c2410c;
+  --color-cat-image: #0f766e;
+  --color-cat-video: #7c3aed;
+  --color-cat-audio: #be185d;
+  --color-cat-developer: #1d4ed8;
+  --color-cat-text: #a16207;
+  --color-cat-utilities: #15803d;
+}
+:root[data-theme='dark'] {
+  --color-cat-pdf: #fb923c;
+  --color-cat-image: #2dd4bf;
+  --color-cat-video: #a78bfa;
+  --color-cat-audio: #f472b6;
+  --color-cat-developer: #60a5fa;
+  --color-cat-text: #facc15;
+  --color-cat-utilities: #4ade80;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.bg-grid-paper {
+  background-image:
+    linear-gradient(var(--color-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::selection {
+  background-color: var(--color-workshop);
+  color: var(--color-paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-workshop);
+  outline-offset: 2px;
+}
+
+/* ---------- Arabic interface ---------- */
+:root[lang="ar"] {
+  --font-body: "Noto Sans Arabic", "Inter", system-ui, sans-serif;
+  --font-display: "Noto Sans Arabic", "Space Grotesk", "Inter", sans-serif;
+}
+/* Arabic letters join; letter-spacing breaks them apart. */
+:root[lang="ar"] body * {
+  letter-spacing: normal !important;
+}
+
+/* Language switch: the new language sweeps across in its reading direction
+   (from the right for Arabic, from the left for English) over the old page. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 650ms;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+  mix-blend-mode: normal;
+}
+:root[data-lang-switch] ::view-transition-old(root) {
+  animation-name: lang-old-out;
+}
+:root[data-lang-switch="ar"] ::view-transition-new(root) {
+  animation-name: lang-in-from-right;
+}
+:root[data-lang-switch="en"] ::view-transition-new(root) {
+  animation-name: lang-in-from-left;
+}
+@keyframes lang-in-from-right {
+  from { clip-path: inset(0 0 0 100%); filter: blur(6px); }
+  60% { filter: blur(0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes lang-in-from-left {
+  from { clip-path: inset(0 100% 0 0); filter: blur(6px); }
+  60% { filter: blur(0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes lang-old-out {
+  to { opacity: 0.35; transform: scale(0.985); }
+}
+/* Browsers without view transitions get a short fade. */
+:root.lang-fade body {
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+body {
+  transition: background-color 150ms ease, color 150ms ease, opacity 200ms ease;
+}
+
+/* Video Editor tabs: the new tab slides in from the side of the tab you came
+   from (mirrored for right-to-left), and the active tab's underline grows. */
+.tab-enter-next,
+.tab-enter-prev {
+  animation: tab-enter 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.tab-enter-next { --tab-shift: 40px; }
+.tab-enter-prev { --tab-shift: -40px; }
+[dir="rtl"] .tab-enter-next { --tab-shift: -40px; }
+[dir="rtl"] .tab-enter-prev { --tab-shift: 40px; }
+@keyframes tab-enter {
+  from { opacity: 0; transform: translateX(var(--tab-shift)); }
+  to { opacity: 1; transform: none; }
+}
+.tab-underline {
+  animation: tab-underline 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes tab-underline {
+  from { transform: scaleX(0); }
+}
+
+/* Settings tab: keys with an action pop in as a wave when the preset or
+   layer changes; the key being recorded pulses; panels slide in. */
+.keycap-pop {
+  animation: keycap-pop 360ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes keycap-pop {
+  from { transform: scale(0.82); opacity: 0.2; }
+  to { transform: none; opacity: 1; }
+}
+.recording-pulse {
+  animation: recording-pulse 1s ease-in-out infinite;
+}
+@keyframes recording-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-workshop) 45%, transparent); }
+  50% { box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-workshop) 0%, transparent); }
+}
+.key-panel-in {
+  animation: key-panel-in 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes key-panel-in {
+  from { opacity: 0; transform: translateY(6px); }
+}
+
+/* Background Remover outline: points pop in, the close target pulses. */
+.outline-point { animation: outline-point-in 220ms cubic-bezier(0.34, 1.56, 0.64, 1); transform-box: fill-box; transform-origin: center; }
+@keyframes outline-point-in { from { transform: scale(0); } }
+.outline-close-target { animation: outline-close 1.1s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes outline-close { 50% { transform: scale(1.25); } }
+.outline-panel-in { animation: key-panel-in 220ms cubic-bezier(0.22, 1, 0.36, 1); }
+.tool-panel-in { animation: key-panel-in 220ms cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* Converters: the From → To layout. */
+.flow-arrow-busy svg { animation: flow-nudge 900ms ease-in-out infinite; }
+@keyframes flow-nudge { 50% { translate: 5px 0; } }
+[dir="rtl"] .flow-arrow-busy svg { animation-name: flow-nudge-rtl; }
+@keyframes flow-nudge-rtl { 50% { translate: -5px 0; } }
+.flow-pill { animation: flow-pill-in 260ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+@keyframes flow-pill-in { from { transform: scale(0.6); opacity: 0; } }
+.flow-done { animation: flow-done 520ms cubic-bezier(0.22, 1, 0.36, 1); }
+@keyframes flow-done { 0% { transform: scale(0.97); } 60% { transform: scale(1.015); } }
+.flow-shimmer::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(100deg, transparent 30%, color-mix(in srgb, white 45%, transparent) 50%, transparent 70%);
+  animation: flow-shimmer 1.1s linear infinite;
+}
+@keyframes flow-shimmer { from { translate: -100% 0; } to { translate: 100% 0; } }
+.slide-in { animation: slide-in 280ms cubic-bezier(0.22, 1, 0.36, 1); }
+@keyframes slide-in { from { opacity: 0; transform: translateY(-6px); } }
+@media (prefers-reduced-motion: reduce) {
+  .flow-arrow-busy svg, .flow-pill, .flow-done, .flow-shimmer::after, .slide-in { animation: none; }
+}
+
+/* Compressors: savings ring and level slider. */
+.ring-arc { transition: stroke-dasharray 600ms cubic-bezier(0.22, 1, 0.36, 1), stroke 300ms; }
+.ring-spin { animation: ring-spin 1.1s linear infinite; }
+@keyframes ring-spin { from { rotate: -90deg; } to { rotate: 270deg; } }
+.ring-num { animation: ring-num 300ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+@keyframes ring-num { from { transform: scale(0.8); opacity: 0.3; } }
+.level-knob, .level-fill { transition: inset-inline-start 380ms cubic-bezier(0.34, 1.4, 0.64, 1), width 380ms cubic-bezier(0.22, 1, 0.36, 1); }
+@media (prefers-reduced-motion: reduce) {
+  .ring-arc, .level-knob, .level-fill { transition: none; }
+  .ring-spin, .ring-num { animation: none; }
+}
+
+/* Page grids (PDF ↔ images): pages pop in one after another. */
+.page-in { animation: page-in 360ms cubic-bezier(0.34, 1.4, 0.64, 1) both; }
+@keyframes page-in { from { opacity: 0; transform: translateY(8px) scale(0.92); } }
+@media (prefers-reduced-motion: reduce) { .page-in { animation: none; } }
+
+/* Text tools: the live result fades in. */
+.fade-in { animation: fade-in 220ms ease-out; }
+@keyframes fade-in { from { opacity: 0; } }
+.stat-pop { animation: ring-num 300ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+@media (prefers-reduced-motion: reduce) { .fade-in, .stat-pop { animation: none; } }
+
+/* Support: the heart beats once on hover. */
+.heart-beat:hover .heart, .heart-beat:focus-visible .heart { animation: heart-beat 700ms ease-in-out; }
+@keyframes heart-beat { 15% { transform: scale(1.3); } 30% { transform: scale(0.95); } 45% { transform: scale(1.18); } 70% { transform: scale(1); } }
+.float-in { animation: float-in 520ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes float-in { from { opacity: 0; transform: translateY(14px); } }
+@media (prefers-reduced-motion: reduce) { .heart-beat:hover .heart, .float-in { animation: none; } }
+
+/* About: the arrows in "How it works" gently push forward. */
+.about-arrow path { animation: about-push 1.6s ease-in-out infinite; }
+@keyframes about-push { 50% { translate: 4px 0; } }
+@media (prefers-reduced-motion: reduce) { .about-arrow path { animation: none; } }
+
+/* Top bar: About / Privacy pill. The name slides out on hover or keyboard focus, and stays out on its own page. */
+.info-label { max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap; margin-inline-start: 0;
+  transition: max-width 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms, margin 320ms; }
+/* Names only slide out on wide screens; phones and tablets show the two icons. */
+@media (min-width: 1024px) {
+  .info-link:hover .info-label, .info-link:focus-visible .info-label, .info-link.is-on .info-label {
+    max-width: 6rem; opacity: 1; margin-inline-start: 0.375rem; }
+}
+@media (prefers-reduced-motion: reduce) { .info-label { transition: none; } }
+
+/* Feedback pop-up: grows in, backdrop fades in. */
+.feedback-dialog[open] { animation: feedback-in 260ms cubic-bezier(0.22, 1, 0.36, 1); }
+.feedback-dialog[open]::backdrop { animation: fade-in 220ms ease-out; }
+@keyframes feedback-in { from { opacity: 0; transform: translateY(10px) scale(0.96); } }
+@media (prefers-reduced-motion: reduce) { .feedback-dialog[open], .feedback-dialog[open]::backdrop { animation: none; } }
+
+/* Scroll bars: a slim pill that floats with no track. Grey at rest and purple
+   in use; on tool and category pages it takes that category's colour
+   (set through --scroll-tint by useScrollTint). */
+:root {
+  --scroll-tint: var(--color-workshop);
+  --scroll-rest: color-mix(in srgb, var(--color-ink-3) 55%, transparent);
+}
+:root[data-scroll-tint] {
+  --scroll-rest: color-mix(in srgb, var(--scroll-tint) 60%, transparent);
+}
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track, ::-webkit-scrollbar-corner { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-rest);
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  min-height: 40px;
+}
+::-webkit-scrollbar-thumb:hover, ::-webkit-scrollbar-thumb:active {
+  background-color: var(--scroll-tint);
+  border-width: 2px;
+}
+/* Firefox can only set colour and a thin width. (Chrome also reads these and
+   would then ignore the rules above, so they apply to Firefox only.) */
+@supports (-moz-appearance: none) {
+  * { scrollbar-width: thin; scrollbar-color: var(--scroll-rest) transparent; }
+}

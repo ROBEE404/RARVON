@@ -1,0 +1,21 @@
+{
+  "Xenova/slimsam-77-uniform": {
+    "revision": "5850ab45f587c112167512ffef949107115e26a0",
+    "license": "apache-2.0",
+    "files": {
+      "config.json": 379,
+      "preprocessor_config.json": 466,
+      "onnx/vision_encoder_quantized.onnx": 8882165,
+      "onnx/prompt_encoder_mask_decoder_quantized.onnx": 4903810
+    }
+  },
+  "onnx-community/BiRefNet_lite-ONNX": {
+    "revision": "de15b22ba131738a16dff04aab8bdf8dc32e3ac1",
+    "license": "mit",
+    "files": {
+      "config.json": 81,
+      "preprocessor_config.json": 391,
+      "onnx/model_fp16.onnx": 114538221
+    }
+  }
+}
