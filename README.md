@@ -67,37 +67,7 @@ digit-heavy sample); handwriting is not supported; Sorani Kurdish has no package
 - Compress PDF rasterizes pages (text stops being selectable) and helps mainly with scanned/image-heavy PDFs.
 - Video tools have been verified in Chromium only.
 
-## Project structure
 
-```
-src/
-  components/   Shared UI: FileDropzone, DownloadButton, ToolPageShell, ToolSearch, ...
-  lib/          toolRegistry.ts (all tool metadata), toolComponents.tsx (lazy-loaded map),
-                workspaceContext.tsx (chaining + result URL lifetime), pdfjs.ts, imageUtils.ts,
-                audioUtils.ts, videoEngine.ts, themeContext.tsx, searchContext.tsx
-  pages/        Home, CategoryPage, ToolPage, ActionPage, CompressHub, Privacy, About, Support, NotFound
-  tools/<category>/<slug>/index.tsx   one folder per tool
-docs/           VIDEO_ARCHITECTURE.md — why WebCodecs/Mediabunny instead of FFmpeg-WASM
-```
-
-To add a tool:
-
-1. Create `src/tools/<category>/<slug>/index.tsx` with a default export
-2. Add its metadata to `src/lib/toolRegistry.ts`
-3. Register the lazy import in `src/lib/toolComponents.tsx`
-
-Build the tool from the shared parts in `src/components/tool` so it matches every other tool:
-`ResultCard` (result + Download; makes the result available to "Continue with" and releases its blob URL),
-`OptionCards` (choices), `CopyButton` (copy with "Copied" feedback), `ActionBar` (main action; sticky on phones)
-and `SizeDelta`. Add the tool to `TOOLS_FOR_KIND` in `src/lib/fileKinds.ts` for each file type it accepts, so the
-home page's drop area and "Continue with" can offer it. Use `text-ink-2` / `text-ink-3` for secondary text —
-they pass contrast in both themes.
-
-## Why the URL shortener isn't real
-
-A short link only works if something remembers where it points — that's a server, unavoidably. The tool page
-under `/tools/utilities/url-shortener` is the real interface with a single `createShortLink()` function to wire
-up; connect it to a backend endpoint and the UI needs no changes.
 
 ## Support / donations
 
@@ -105,47 +75,7 @@ Optional, never required, and it never unlocks anything. Set `VITE_SUPPORT_KOFI_
 optionally, `VITE_PROJECT_REPO_URL` (this repository, for "Report a bug" and "Ask for a tool") — see
 `.env.example`. Without a Ko-fi link the Support page shows a calm "coming soon" note instead of a button.
 
-## Local development
 
-```
-npm install
-npm run dev
-```
-
-## Tests
-
-```
-npm test            # unit tests (Vitest): registry integrity, chaining, page ranges, helpers
-npm run test:e2e    # browser tests (Playwright, Chromium) against the production build
-```
-
-The e2e suite opens every route and fails on any console error, then drives each file tool through its real UI
-with generated files (PDFs, JPEG/PNG with EXIF, WebM video with audio, WAV) and checks the downloaded output —
-page counts, text, dimensions, durations, ZIP contents. Known open bugs are marked `test.fail` with the roadmap
-task that fixes them, so they flip to failures (and get noticed) once fixed. First run: `npx playwright install chromium`.
-
-## Deployment
-
-A static site: `npm run build` produces `dist/`. Configs are included for **Vercel** (`vercel.json`) and
-**Netlify / Cloudflare Pages** (`public/_redirects`, `public/_headers`): SPA fallback, long-lived caching for hashed
-assets, `no-cache` for `index.html` and `sw.js`, and OCR language data served as plain binary (`.gz` files are
-unpacked by the OCR engine itself — the host must not add `Content-Encoding`).
-
-- **Offline / installable (PWA):** `src/sw-template.js` becomes `/sw.js` at build time with the list of every
-  hashed asset, so each tool works offline after the first visit; OCR models are cached when first used.
-- **SEO:** set `VITE_SITE_URL` (see `.env.example`) to generate `sitemap.xml` and absolute canonical/Open Graph
-  URLs; tool pages carry schema.org `WebApplication` + `FAQPage` JSON-LD.
-- **No third-party requests:** fonts, OCR engine and language data are all self-hosted (a test enforces this).
-- **Licenses:** every build regenerates the table in `THIRD_PARTY_LICENSES.md` and ships full texts at
-  `/licenses/third-party.txt` (linked in the footer).
-
-## Checks and production build
-
-```
-npm run lint
-npm run build      # runs tsc -b, then vite build
-npm run preview
-```
 
 ## License
 
