@@ -6,7 +6,8 @@ bugs or ask for new tools. That does not make it open source.
 
 WHAT YOU MAY DO
 
-  - Use the Rarvon website and its tools, for free, for any purpose.
+  - Use Rarvon (the website, the desktop app and their tools), for free, for
+    any purpose.
   - Read the source code in this repository.
   - Open issues to report bugs, security problems or ideas for new tools.
 
@@ -22,6 +23,17 @@ GitHub's Terms of Service require; it gives no other rights.
 
 Changes to Rarvon are made only by the copyright holder. Pull requests are not
 accepted; please open an issue instead.
+
+NAME AND LOGO
+
+"Rarvon", the raven logo, the app icon and the Rarvon wordmark are the
+property of ROBEE. They are not licensed under this notice or any other, and
+no permission to use them is given, including by viewing or forking this
+repository. You may not use them, or any name or logo confusingly similar to
+them, for your own product, website, app or service, or in any way that
+suggests your work comes from or is approved by Rarvon. You may refer to
+Rarvon by name, and link to it, when writing about it (for example in an
+article, a review or a list of tools).
 
 THIRD-PARTY SOFTWARE
 
