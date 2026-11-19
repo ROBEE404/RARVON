@@ -1,157 +1,126 @@
-# Rarvon
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="design/brand/rarvon-final/png/rarvon-logo-for-dark@2x.png">
+    <img src="design/brand/rarvon-final/png/rarvon-logo-for-light@2x.png" alt="Rarvon" width="420">
+  </picture>
+</p>
 
-A free, ad-free, account-free toolbox for everyday file and text tasks — PDF, image, developer, text and utility
-tools that run entirely in your browser.
+<h3 align="center">Free tools for your files. No ads. No account. Nothing uploaded.</h3>
 
-## Philosophy
+<p align="center">
+  PDFs, images, video, audio and text — 50+ tools that run entirely on your own device.<br>
+  In English and Arabic, in your browser or as a desktop app.
+</p>
 
-- **Free forever** — no subscriptions, no paywalls
-- **No ads** — no banners, popups, or "watch an ad to download"
-- **No account** — nothing to sign up for
-- **Local-first** — files are processed in your browser and never uploaded, whenever that's technically possible
-- **Honest about limits** — if a tool genuinely needs a server (an FFmpeg-in-WASM pipeline, a real URL shortener),
-  it's labeled "Coming Soon" with the real reason, instead of faking it or quietly uploading your file
+<p align="center">
+  <a href="#-what-you-can-do">Tools</a> ·
+  <a href="#-private-by-design">Privacy</a> ·
+  <a href="#-rarvon-for-desktop">Desktop app</a> ·
+  <a href="#-run-it-yourself">Run it</a> ·
+  <a href="#-support-rarvon">Support</a>
+</p>
 
-## Stack
+---
 
-- **React 19 + TypeScript + Vite** — one lazy-loaded chunk per tool, so the homepage stays light and heavy
-  libraries (pdfjs, the video engine) only load on the pages that use them
-- **React Router** — one route per tool (`/tools/pdf/merge`), plus action pages (`/compress`, `/convert`, ...)
-- **Tailwind CSS v4** — design tokens and light/dark themes in `src/index.css`
-- **pdf-lib** (MIT) — create/edit PDFs · **pdfjs-dist** (Apache-2.0) — render PDF pages
-- **@pdf-lib/fontkit** (MIT) + **bidi-js** (MIT) + **Noto Sans / Noto Sans Arabic** (OFL-1.1, via fontsource) — font
-  shaping, bidirectional layout and fonts for PDF Editor text in any direction
-- **@mediabunny/mp3-encoder** (MPL-2.0 wrapper around LAME, LGPL) — MP3 export, its own lazily-loaded chunk
-- **mediabunny** (MPL-2.0) — MP4/WebM demux/mux on top of the browser's WebCodecs, for the video tools
-- **tesseract.js** + **tesseract.js-core** (Apache-2.0) — OCR engine (WebAssembly) for Image to Text, with
-  language models from **@tesseract.js-data/*** (Apache-2.0, Tesseract `tessdata_best` integer models)
-- **upng-js** (MIT) + **pako** (MIT) — PNG palette compression, in a Web Worker
-- **jszip** (MIT), **qrcode** (MIT), **exifr** (MIT) — ZIP creation, QR codes, EXIF reading
+## ✦ Why Rarvon
 
-No backend. Every tool runs in the browser.
+Most "free" file websites upload your documents to someone else's server, show you ads, or stop you
+halfway with a sign-up wall. Rarvon is the opposite:
 
-## Tools
-
-| Category | Tools |
+| Promise | What it means |
 |---|---|
-| PDF | Editor (text incl. Arabic/RTL, draw, highlight, underline, shapes/arrows, images, sticky-note comments, signature, redact; reorder/rotate/duplicate/delete/insert blank pages), Merge, Split, Compress, **PDF→Text (with OCR for scans)**, Rotate, Extract pages, Delete pages, Reorder, PDF→Images, Images→PDF, Metadata, Page numbers, Watermark, Sign |
-| Image | **Image to Text (OCR)**, Convert, Compress (JPEG/WebP quality, PNG palette reduction), Resize (interactive), Crop, Rotate/flip, Metadata viewer, Remove EXIF |
-| Video (experimental) | Trim, Change resolution, Convert (MOV/MKV/MP4/WebM → MP4 or WebM), Compress (source-relative bitrate, optional resolution cap) — WebCodecs via Mediabunny, cancellable, 250 MB limit |
-| Audio | Trim (WAV), Convert (MP3 / AAC .m4a / Opus .ogg / WAV), Compress (Opus, AAC or MP3, 32–128 kb/s), Extract audio from video (direct copy or re-encode) — Mediabunny + WebCodecs, much faster than real time |
-| Developer | JSON format/minify, Base64, URL encode, UUID, Hash, Timestamp, Color, JWT decoder, Regex tester |
-| Text | Word counter, Case converter, Text cleaner, Remove duplicate lines, Line sorter |
-| Utilities | File Compressor (create ZIP), ZIP Extractor (incl. legacy Arabic/Windows file names), QR code, Password, Random number, URL shortener (UI only — needs a server) |
+| **Free, for good** | No subscriptions, no paywalls, nothing locked behind a plan. |
+| **No ads, no tracking** | No banners, no pop-ups, no analytics, no cookies. |
+| **No account** | Open a tool and use it. That's it. |
+| **Your files stay yours** | Every tool runs on your device. Files are never uploaded — not even to Rarvon. |
+| **Works offline** | After your first visit, the tools keep working without internet. |
+| **English and العربية** | A full Arabic interface, right to left, with Arabic text support in the tools that need it. |
+| **Light and dark** | Follows your system, or pick one. |
 
-Cross-cutting features: global search (⌘K), action pages, a Compress hub, light/dark/system theme, and **tool
-chaining** — a tool's last result can be picked up by the next tool without re-uploading
-(`src/lib/workspaceContext.tsx` + `DownloadButton`).
+## ✦ What you can do
 
-### Image to Text (OCR)
+| | Tools |
+|---|---|
+| **PDF** | Edit (text in any language, drawing, highlights, shapes, images, comments, signature, redaction) · Merge · Split · Compress · PDF to Text (with OCR for scans) · Rotate · Extract, delete and reorder pages · PDF to Images · Images to PDF · Page numbers · Watermark · Sign · Metadata |
+| **Image** | Background Remover (AI) · Image to Text (OCR, Arabic + English) · Convert (JPG, PNG, WebP, AVIF, GIF, TIFF, BMP, ICO, PSD and more) · Compress · Resize · Crop · Rotate · View and remove metadata |
+| **Video** | Video Editor (timeline, text, music, export) · Convert (MP4, MOV, WebM, MKV, GIF) · Compress · Trim · Change resolution |
+| **Audio** | Convert (MP3, AAC, Opus, WAV) · Compress · Trim · Extract audio from video |
+| **Text** | Word counter · Case converter · Text cleaner · Remove duplicate lines · Line sorter |
+| **Developer** | JSON formatter and minifier · Base64 · URL encoder · UUID · Hash · Timestamp · Color · JWT decoder · Regex tester |
+| **Utilities** | File Compressor (ZIP) · ZIP Extractor · QR codes · Passwords · Random numbers |
 
-`src/lib/ocrEngine.ts` (Tesseract in a Web Worker, LSTM models) and `src/lib/ocrPreprocess.ts` (rotation, scaling,
-grayscale/contrast, dark-background inversion, automatic deskew). All OCR files — worker, WASM cores and one
-`<lang>.traineddata.gz` per installed `@tesseract.js-data/<lang>` package — are self-hosted under `/ocr/` by the
-`ocrAssets` plugin in `vite.config.ts` and only downloaded when OCR runs (1–15 MB per language, then cached).
-To add a language: `npm i -D @tesseract.js-data/<code>` and add it to `OCR_LANGUAGES`.
+**Drop any file on the home page** and Rarvon suggests what you can do with it. A tool's result can go
+straight into the next tool, with no re-uploading.
 
-Arabic is handled as a first-class case: Arabic + English is read together for mixed text, and pure Arabic is
-re-read with the Arabic model alone when no confident Latin words are found. Character error rates measured on
-rendered test images: clean Arabic 0.5–1.5%, mixed Arabic/English 0.7%, tilted noisy photos 1–5%, dark-mode
-screenshots ~4%, English 0%. Eastern Arabic digits (٠–٩) are a known weak spot of the Arabic model (~14% CER on a
-digit-heavy sample); handwriting is not supported; Sorani Kurdish has no packaged model.
+## ✦ Private by design
 
-### Known limitations
+- **Nothing leaves your device.** Rarvon has no server that receives files. Conversions, compression, OCR and
+  AI all run locally in your browser or in the desktop app.
+- **No cookies, no analytics, no fingerprinting.** Rarvon doesn't know who you are and doesn't try to find out.
+- **No third-party requests.** Fonts, AI models and language data are served by Rarvon itself; nothing calls
+  Google, ad networks or trackers.
+- **Open to inspection.** The code is public, so anyone can check these promises.
 
-- PDF Editor: Arabic-script text is exported as shaped vector outlines (exact, but not selectable); CJK/Devanagari
-  text as an image of the text. Existing PDF text can't be edited, only annotated on top.
-- Compress PDF rasterizes pages (text stops being selectable) and helps mainly with scanned/image-heavy PDFs.
-- Video tools have been verified in Chromium only.
+Read the full [Privacy policy](PRIVACY.md).
 
-## Project structure
+## ✦ Rarvon for desktop
 
+The same Rarvon, on your computer, with more power:
+
+- **Any file size.** Video and audio run in FFmpeg on your own hardware, using your graphics card when it can.
+- **Almost every format,** including AVI, WMV, FLV, MPEG and others that browsers can't open.
+- **Its own window,** with no tabs or address bar. It closes itself when you close it.
+- **Light:** about 7 MB of memory for the engine.
+
+Windows 10 and 11 today (beta); Linux is planned. Downloads will be on the website once it launches.
+
+## ✦ Run it yourself
+
+You need [Node.js](https://nodejs.org) 22 or newer.
+
+```bash
+npm ci
 ```
-src/
-  components/   Shared UI: FileDropzone, DownloadButton, ToolPageShell, ToolSearch, ...
-  lib/          toolRegistry.ts (all tool metadata), toolComponents.tsx (lazy-loaded map),
-                workspaceContext.tsx (chaining + result URL lifetime), pdfjs.ts, imageUtils.ts,
-                audioUtils.ts, videoEngine.ts, themeContext.tsx, searchContext.tsx
-  pages/        Home, CategoryPage, ToolPage, ActionPage, CompressHub, Privacy, About, Support, NotFound
-  tools/<category>/<slug>/index.tsx   one folder per tool
-docs/           VIDEO_ARCHITECTURE.md — why WebCodecs/Mediabunny instead of FFmpeg-WASM
-```
 
-To add a tool:
-
-1. Create `src/tools/<category>/<slug>/index.tsx` with a default export
-2. Add its metadata to `src/lib/toolRegistry.ts`
-3. Register the lazy import in `src/lib/toolComponents.tsx`
-
-Build the tool from the shared parts in `src/components/tool` so it matches every other tool:
-`ResultCard` (result + Download; makes the result available to "Continue with" and releases its blob URL),
-`OptionCards` (choices), `CopyButton` (copy with "Copied" feedback), `ActionBar` (main action; sticky on phones)
-and `SizeDelta`. Add the tool to `TOOLS_FOR_KIND` in `src/lib/fileKinds.ts` for each file type it accepts, so the
-home page's drop area and "Continue with" can offer it. Use `text-ink-2` / `text-ink-3` for secondary text —
-they pass contrast in both themes.
-
-## Why the URL shortener isn't real
-
-A short link only works if something remembers where it points — that's a server, unavoidably. The tool page
-under `/tools/utilities/url-shortener` is the real interface with a single `createShortLink()` function to wire
-up; connect it to a backend endpoint and the UI needs no changes.
-
-## Support / donations
-
-Optional, never required, and it never unlocks anything. Set `VITE_SUPPORT_KOFI_URL` (your Ko-fi page) and,
-optionally, `VITE_PROJECT_REPO_URL` (this repository, for "Report a bug" and "Ask for a tool") — see
-`.env.example`. Without a Ko-fi link the Support page shows a calm "coming soon" note instead of a button.
-
-## Local development
-
-```
-npm install
+```bash
 npm run dev
 ```
 
-## Tests
+Then open **http://localhost:5173**.
 
-```
-npm test            # unit tests (Vitest): registry integrity, chaining, page ranges, helpers
-npm run test:e2e    # browser tests (Playwright, Chromium) against the production build
-```
+Step-by-step instructions, tests, the desktop app and publishing settings are in **[RUNNING.md](RUNNING.md)**.
+Technical notes for development are in **[docs/DEVELOPMENT.md](docs/DEVELOPMENT.md)**.
 
-The e2e suite opens every route and fails on any console error, then drives each file tool through its real UI
-with generated files (PDFs, JPEG/PNG with EXIF, WebM video with audio, WAV) and checks the downloaded output —
-page counts, text, dimensions, durations, ZIP contents. Known open bugs are marked `test.fail` with the roadmap
-task that fixes them, so they flip to failures (and get noticed) once fixed. First run: `npx playwright install chromium`.
+## ✦ Found a bug? Want a tool?
 
-## Deployment
+Open an [issue](../../issues) and describe what happened or what you'd like to do.
+Rarvon is maintained by one person, so pull requests aren't accepted — but every report is read.
+For security problems, see [SECURITY.md](SECURITY.md).
 
-A static site: `npm run build` produces `dist/`. Configs are included for **Vercel** (`vercel.json`) and
-**Netlify / Cloudflare Pages** (`public/_redirects`, `public/_headers`): SPA fallback, long-lived caching for hashed
-assets, `no-cache` for `index.html` and `sw.js`, and OCR language data served as plain binary (`.gz` files are
-unpacked by the OCR engine itself — the host must not add `Content-Encoding`).
+## ✦ Support Rarvon
 
-- **Offline / installable (PWA):** `src/sw-template.js` becomes `/sw.js` at build time with the list of every
-  hashed asset, so each tool works offline after the first visit; OCR models are cached when first used.
-- **SEO:** set `VITE_SITE_URL` (see `.env.example`) to generate `sitemap.xml` and absolute canonical/Open Graph
-  URLs; tool pages carry schema.org `WebApplication` + `FAQPage` JSON-LD.
-- **No third-party requests:** fonts, OCR engine and language data are all self-hosted (a test enforces this).
-- **Licenses:** every build regenerates the table in `THIRD_PARTY_LICENSES.md` and ships full texts at
-  `/licenses/third-party.txt` (linked in the footer).
+Rarvon is free and has no ads, and it will stay that way. If it saves you time, you can help keep it going
+with a small donation — it never unlocks anything, it just says thank you. The Support page on the website
+has the link.
 
-## Checks and production build
+## ✦ Thank you
 
-```
-npm run lint
-npm run build      # runs tsc -b, then vite build
-npm run preview
-```
+Rarvon stands on the shoulders of excellent open-source work, including **pdf.js**, **pdf-lib**,
+**Tesseract**, **Transformers.js**, **ONNX Runtime**, **Mediabunny**, **FFmpeg**, **React** and many more.
+Every library, font and AI model is credited with its license in
+[THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md) and on the website's *Credits and licenses* page.
 
-## License
+## ✦ License and brand
 
-Rarvon is free to use, but it is **not open source**. Copyright (c) 2026 ROBEE — all rights reserved; see
-[LICENSE](LICENSE). The code is public so people can see how it works and report bugs or ask for tools in the
-issues; it may not be copied, modified or republished without permission, and pull requests are not accepted.
+**Rarvon is free to use, but it is not open source.** Copyright © 2026 ROBEE. All rights reserved.
+The code is public so you can see how Rarvon works, check its privacy promises, and report bugs. It may not be
+copied, modified, republished or used in another product without written permission. See [LICENSE](LICENSE).
 
-Rarvon is built on open-source libraries, which keep their own licenses: see
-[THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md) (also shipped at `/licenses/third-party.txt`).
+**The Rarvon™ name and the raven logo are the property of ROBEE.** They are not covered by any license, and no
+permission to use them is given. Please don't use the name or the logo (or anything confusingly similar) for
+your own product, website, app or service, and don't present your work as connected to Rarvon. If you'd like
+to mention Rarvon — in an article, a review, or a list of tools — you're welcome to use its name and link to it.
+
+Third-party components keep their own licenses, listed in [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md).
+
+<p align="center"><br>Made with care by <a href="https://github.com/ROBEE404">ROBEE</a>.</p>
